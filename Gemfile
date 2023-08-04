@@ -15,7 +15,7 @@ gem "puma", "~> 5.0"
 gem 'byebug'
 
 gem 'google-api-client'
-
+gem 'googleauth'
 gem 'google-auth-library-ruby'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]

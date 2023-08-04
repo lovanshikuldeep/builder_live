@@ -1,5 +1,10 @@
 class AppointmentsController < ApplicationController
  before_action :find_user
+
+ require 'google/apis/calendar_v3'
+require 'googleauth'
+require 'googleauth/stores/file_token_store' # If you need to store OAuth tokens
+require 'fileutils' 
  
   def index
     @appointments = @user.appointments
@@ -31,9 +36,11 @@ class AppointmentsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def google_calendar(appointment)
+  def google_calendar(appointment) 
+     byebug
     client = Google::Apis::CalendarV3::CalendarService.new
-    client.authorization = google_api_credentials 
+  
+    client.authorization = '/home/developer/Downloads/calendar-api-management-app-b5e2b533add1.json '
 
     event = Google::Apis::CalendarV3::Event.new(
       summary: "Appointment with #{appointment.full_name}",

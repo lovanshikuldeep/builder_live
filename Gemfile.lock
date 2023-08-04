@@ -249,6 +249,7 @@ DEPENDENCIES
   faker
   google-api-client
   google-auth-library-ruby
+  googleauth
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
