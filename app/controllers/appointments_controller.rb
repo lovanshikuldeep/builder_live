@@ -1,11 +1,6 @@
 class AppointmentsController < ApplicationController
  before_action :find_user
 
- require 'google/apis/calendar_v3'
-require 'googleauth'
-require 'googleauth/stores/file_token_store' # If you need to store OAuth tokens
-require 'fileutils' 
- 
   def index
     @appointments = @user.appointments
     render json: @appointments
@@ -13,23 +8,32 @@ require 'fileutils'
 
   def show
     @appointment = @user.appointments.find(params[:id])
+    render json: @appointment
   end
 
   def create
     @appointment = @user.appointments.create(appointment_params)
     if @appointment.save
       # AppointmentMailer.appointment_created(@appointment).deliver_now
-      google_calendar(@appointment)
       render json: @appointment
     else
       render json: { errors: 'appointment could not be created'}
     end
   end
 
+  def update  
+    @appointment = @user.appointments.find(params[:id])
+    if @appointment.update(appointment_params)
+      render json: @appointment
+    else
+      render json: { errors: 'appointment could not be updated'}
+    end
+  end
+
   private 
 
   def appointment_params
-    params.require(:appointment).permit(:date, :slote_time, :pickup_location, :user_id, :full_name, :phone_number, :cab_service)
+    params.require(:appointment).permit(:date, :slote_time, :pickup_location, :user_id, :full_name, :phone_number, :cab_service, :current_time, :status )
   end
 
   def find_user

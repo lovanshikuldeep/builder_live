@@ -16,6 +16,6 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params.require(:user).permit(:name, :email, :phone_number)
+    params.require(:user).permit(:name, :email, :phone_number,:google_calendar_access_token)
   end
 end

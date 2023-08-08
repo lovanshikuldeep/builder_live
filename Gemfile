@@ -13,10 +13,16 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 
 gem 'byebug'
+gem 'delayed_job_active_record'
+gem 'sidekiq'
 
-gem 'google-api-client'
-gem 'googleauth'
-gem 'google-auth-library-ruby'
+gem 'delayed_job_mongoid'\
+
+gem 'whenever', require: false
+
+gem 'sidekiq-cron'
+
+gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"

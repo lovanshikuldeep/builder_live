@@ -1,0 +1,4 @@
+#   appointment:
+#   cron:  "* * * * *" # Runs every 1 minute
+#   class: AppointmentJob
+# # 
